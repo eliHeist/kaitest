@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.container{
+    @apply mx-auto
+}
+
+.link{
+    @apply text-primary-900 text-lg font-medium
+}
+
+.hs{
+    outline: 2px solid lime !important;
+}
+
+.booking-form input, .booking-form textarea{
+    @apply outline outline-1 outline-slate-200 p-2 bg-slate-200 
+}
+.booking-form input[type='radio'], .booking-form input[type='checkbox']{
+    outline: none;
+}
+
+.form-label{
+    @apply block text-gray-700 text-base font-bold mb-2;
+}

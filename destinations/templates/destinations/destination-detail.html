@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<section class=" h-[70vh] overflow-hidden mb-24">
+    <div class="relative">
+        <video autoplay muted loop class=" w-full h-full object-cover">
+            <source src="{{ destination.video.url }}" type="video/mp4">
+        </video>
+        <div class="cover z-10 absolute top-0 left-0 w-full h-full bg-black bg-opacity-40">
+            <div id="hero-space"></div>
+            <div class="content-space grid justify-center content-start h-full">
+                <h1 class="text-center text-6xl text-white uppercase mt-40 font-bold">{{ destination.name }}</h1>
+                <p class="text-lg text-white text-center mt-4">Come and tour {{ destination.name }} with Kaizen Safaris</p>
+                <a href="{% url 'destinations:itinerary-list' destination.pk %}" class=" bg-primary-900 border-lime-900 border-2 hover:bg-green-800 text-white py-4 px-6 w-fit h-fit mx-auto mt-20 mb-auto text-3xl uppercase rounded-lg">Explore</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+    

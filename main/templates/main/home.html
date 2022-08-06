@@ -1,0 +1,228 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<section class=" h-screen overflow-hidden">
+    <div class="relative">
+        <video autoplay muted loop class=" w-full h-full object-cover">
+            <source src="{% static 'video/homehero.m4v' %}" type="video/mp4">
+        </video>
+        <div class="cover z-10 absolute top-0 left-0 w-full h-full bg-black bg-opacity-40">
+            <div id="hero-space"></div>
+            <div class="content-space">
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- welcome section -->
+<section class=" bg-[#efd8ae] py-16 rounded-3xl shadow-2xl ">
+    <div class="container">
+        <div class="grid grid-cols-2">
+            <figure>
+                <img src="{% static 'img/lion.png' %}" alt="East Africa Tours" class=" sm:h-[30rem]">
+            </figure>
+            <article>
+                <p class="text-2xl">
+                    Kaizen Safaris welcomes you to Africa, the magnificent continent with inexhaustible natural,
+                    cultural and adventurous treasures. We have been dedicated to providing best services to our valued
+                    clients since our establishment, putting every single effort to make your trips memorable. Rich in
+                    Nature and culture, events and festivals, flora and fauna, art and architecture, Africa boasts of
+                    being an awe-inspiring destination in all aspects. It has been fascinating travelers for more than
+                    half a century and continues to do so now and in the future. People from all over the world with
+                    different tastes, interests are fully satisfied once they experience their stay in Africa.
+                </p>
+            </article>
+        </div>
+    </div>
+</section>
+<!-- Featured safaris -->
+<section class=" py-16">
+    <h2 class="text-center text-4xl mb-8">Featured Safaris</h2>
+    <div class="swiper container">
+        <div class="swiper-wrapper slide-content">
+
+            <div class="scroll-element swiper-slide grid gap-4 p-4 shadow-2xl">
+                <img src="{% static 'img/elephant.png' %}" alt=""
+                    class=" rounded-2xl outline outline-5 outline-orange-200 aspect-video w-full object-cover">
+                <h3><a href="#">Uganda Wildlife Safaris</a></h3>
+            </div>
+            <div class="scroll-element swiper-slide grid gap-4 p-4 shadow-2xl">
+                <img src="{% static 'img/elephant.png' %}" alt=""
+                    class=" rounded-2xl outline outline-5 outline-orange-200 aspect-video w-full object-cover">
+                <h3><a href="#">Uganda Wildlife Safaris</a></h3>
+            </div>
+            <div class="scroll-element swiper-slide grid gap-4 p-4 shadow-2xl">
+                <img src="{% static 'img/elephant.png' %}" alt=""
+                    class=" rounded-2xl outline outline-5 outline-orange-200 aspect-video w-full object-cover">
+                <h3><a href="#">Uganda Wildlife Safaris</a></h3>
+            </div>
+            <div class="scroll-element swiper-slide grid gap-4 p-4 shadow-2xl">
+                <img src="{% static 'img/elephant.png' %}" alt=""
+                    class=" rounded-2xl outline outline-5 outline-orange-200 aspect-video w-full object-cover">
+                <h3><a href="#">Uganda Wildlife Safaris</a></h3>
+            </div>
+            <div class="scroll-element swiper-slide grid gap-4 p-4 shadow-2xl">
+                <img src="{% static 'img/elephant.png' %}" alt=""
+                    class=" rounded-2xl outline outline-5 outline-orange-200 aspect-video w-full object-cover">
+                <h3><a href="#">Uganda Wildlife Safaris</a></h3>
+            </div>
+
+        </div>
+        <div class="swiper-pagination"></div>
+        <!-- <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div> -->
+    </div>
+</section>
+<!-- cartegories -->
+<section class=" py-16 bg-primary-900">
+    <h2 class="text-center text-4xl mb-8 text-white">Safaris By Category</h2>
+    <div class="container">
+        <div class="grid grid-cols-3 gap-4">
+            <div class="card bg-white overflow-hidden rounded-tl-3xl rounded-br-3xl p-4 grid gap-4">
+                <img src="{% static 'img/elephant.png' %}" alt=""
+                    class="w-full aspect-video object-cover rounded-tl-xl">
+                <h3><a href="#" class=" link">7 Days Uganda Safari, Gorillas, Wildlife and Chimpanzee Tracking</a></h3>
+            </div>
+            <div class="card bg-white overflow-hidden rounded-tl-3xl rounded-br-3xl p-4 grid gap-4">
+                <img src="{% static 'img/elephant.png' %}" alt=""
+                    class="w-full aspect-video object-cover rounded-tl-xl">
+                <h3><a href="#" class=" link">7 Days Uganda Safari, Gorillas, Wildlife and Chimpanzee Tracking</a></h3>
+            </div>
+            <div class="card bg-white overflow-hidden rounded-tl-3xl rounded-br-3xl p-4 grid gap-4">
+                <img src="{% static 'img/elephant.png' %}" alt=""
+                    class="w-full aspect-video object-cover rounded-tl-xl">
+                <h3><a href="#" class=" link">7 Days Uganda Safari, Gorillas, Wildlife and Chimpanzee Tracking</a></h3>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- destinations -->
+<section class="py-32">
+    <div class="container">
+        <div class="flex h-96 md:h-[30rem] sm:w-4/5 mx-auto">
+            
+            {% for destination in destinations %}
+                <div class="accord-item h-full flex-1 transition-all hover:flex-3 z-0 overflow-hidden grid content-end" style="background-image: url('{{ destination.image.url }}'); background-size:cover;">
+                    <span class="font-extrabold text-xl md:text-2xl cursor-default mt-auto text-white ml-2">{{ destination.name }}</span><br>
+                    <a href="{% url 'destinations:destination-detail' destination.pk %}" class=" text-xl font-bold text-white hover:text-lime-500 ml-2 mt-1 mb-4">visit <i class="fas fa-arrow-right ml-2 text-lg"></i></a>
+                </div>
+            {% endfor %}
+                
+        </div>
+    </div>
+</section>
+
+<!-- parallax -->
+<section class="parallax overflow-hidden">
+    <div class="py-16 bg-black bg-opacity-60 grid">
+        <div class="container text-white text-center py-16">
+            <h2 class=" text-4xl font-bold">Didn’t find the trip you’re looking for?</h2>
+            <p class=" max-w-xl text-xl mx-auto my-4">
+                Tailor-made trips offer you the flexibility to design your own trip exactly how you like it. You can
+                decide how and when to travel, the level of service and the hotel standard. Pack in as many activities
+                and locations as possible, or incorporate some relaxation and free time to explore on your own terms.
+            </p>
+            <button class="text-primary-900 bg-white py-4 px-6 rounded-2xl">
+                <a href="#" class="link">Get a custom trip</a>
+            </button>
+        </div>
+    </div>
+</section>
+<!-- affiliations -->
+<section class="py-16">
+    <h2 class=" text-4xl font-bold text-center mb-8">Affiliations</h2>
+    <div class="flex justify-center gap-16">
+        <figure>
+            <img src="{% static 'img/affiliations/safaribookings.png' %}" alt="">
+        </figure>
+        <figure>
+            <img src="{% static 'img/affiliations/auto.png' %}" alt="">
+        </figure>
+        <figure>
+            <img src="{% static 'img/affiliations/uwa.png' %}" alt="">
+        </figure>
+        <figure>
+            <img src="{% static 'img/affiliations/uta.png' %}" alt="">
+        </figure>
+        <figure>
+            <img src="{% static 'img/affiliations/utb.png' %}" alt="">
+        </figure>
+    </div>
+</section>
+{% endblock content %}
+
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'swiper/swiper-bundle.min.css' %}">
+<script src="{% static 'swiper/swiper-bundle.min.js' %}"></script>
+
+<style>
+    .scroller {
+        --_space: 1rem;
+        display: grid;
+        grid-auto-flow: column;
+        gap: var(--_space);
+        grid-auto-columns: 21%;
+        overflow-x: auto;
+        overscroll-behavior-inline: contain;
+    }
+
+    .accord-item{
+        width: 100%;
+    }
+    .accord-item{
+        width: 200%;
+    }
+    .accord-item a, .accord-item span{
+        text-shadow: 1px 1px 2px rgb(15, 45, 0);
+    }
+
+    .parallax {
+        background-image: url('/static/img/elephant.png');
+        background-size: cover;
+        background-attachment: fixed;
+    }
+</style>
+{% endblock styles %}
+
+
+{% block scripts %}
+<script>
+    var swiper = new Swiper(".swiper", {
+        slidesPerView: 4,
+        spaceBetween: 25,
+        loop: true,
+        centerSlide: 'true',
+        fade: 'true',
+        grabCursor: 'true',
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+          dynamicBullets: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+    
+        breakpoints:{
+            0: {
+                slidesPerView: 1,
+            },
+            520: {
+                slidesPerView: 2,
+            },
+            950: {
+                slidesPerView: 4,
+            },
+        },
+      });
+</script>
+{% endblock scripts %}
+    

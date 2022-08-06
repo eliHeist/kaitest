@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'lightbox2/dist/css/lightbox.min.css' %}">
+    <script src="{% static 'lightbox2/dist/js/lightbox-plus-jquery.min.js' %}"></script>
+{% endblock styles %}
+    
+
+{% block content %}
+<section class=" sm:h-[70vh] overflow-hidden">
+    <div class="relative">
+        <video autoplay muted loop class=" w-full h-full object-cover">
+            <source src="{% static 'video/homehero.m4v' %}" type="video/mp4">
+        </video>
+        <div class="cover z-10 absolute top-0 left-0 w-full h-full bg-black bg-opacity-0">
+            <div id="hero-space"></div>
+            <div class="content-space">
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<main>
+    <h1 class=" text-primary-900 text-6xl my-8 text-center">Kaizen Safari's Gallery</h1>
+    <div class="container">
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-8 pb-8">
+            
+            {% for photo in photos %}
+                <figure class=" aspect-1610 overflow-hidden">
+                    <a href="{{ photo.image.url }}" data-lightbox="gallery">
+                        <img src="{{ photo.image.url }}" alt="{{ photo.description }}" class=" sm:scale-125 sm:hover:scale-100x sm:grayscale sm:hover:grayscale-0 transition-all object-cover">
+                    </a>
+                </figure>
+            {% endfor %}
+                
+        </div>
+    </div>
+</main>
+{% endblock content %}
+    
