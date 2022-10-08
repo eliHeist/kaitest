@@ -779,6 +779,10 @@ video {
   margin-bottom: 2rem;
 }
 
+.mb-32 {
+  margin-bottom: 8rem;
+}
+
 .ml-2 {
   margin-left: 0.5rem;
 }
@@ -1301,11 +1305,6 @@ video {
   padding-bottom: 11rem;
 }
 
-.py-32 {
-  padding-top: 8rem;
-  padding-bottom: 8rem;
-}
-
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
@@ -1333,6 +1332,10 @@ video {
 
 .pb-8 {
   padding-bottom: 2rem;
+}
+
+.pt-32 {
+  padding-top: 8rem;
 }
 
 .pb-3 {
@@ -1488,15 +1491,15 @@ video {
   opacity: 0.3;
 }
 
-.shadow-lg {
-  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
 .shadow-2xl {
   --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
   --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-lg {
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
@@ -1687,6 +1690,10 @@ body{
 
 .h-100{
   height: 100% !important;
+}
+
+.shadow-all-round{
+  box-shadow: 0 0 15px rgb(0 0 0 / 70%);
 }
 
 .hover\:flex-3:hover {
