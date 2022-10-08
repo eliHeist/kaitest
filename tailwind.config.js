@@ -6,7 +6,8 @@ module.exports = {
       colors: {
         primary: {
           900: 'rgb(16, 43, 16)',
-          800: 'rgb(13, 40, 13)'
+          800: 'rgb(13, 40, 13)',
+          100: 'rgb(237, 250, 237)',
         }
       },
       fontFamily: {
@@ -23,7 +24,7 @@ module.exports = {
         base: '1',
         2: '2 2 0%',
         3: '6 6 0%',
-      },
+      }
     },
   },
   plugins: [],

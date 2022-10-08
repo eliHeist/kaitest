@@ -9,35 +9,51 @@
     
 
 {% block content %}
-<section class=" sm:h-[70vh] overflow-hidden">
-    <div class="relative">
+<section class=" h-[70vh] overflow-hidden" id="banner">
+    <div class="relative h-full">
         <video autoplay muted loop class=" w-full h-full object-cover">
             <source src="{% static 'video/homehero.m4v' %}" type="video/mp4">
         </video>
-        <div class="cover z-10 absolute top-0 left-0 w-full h-full bg-black bg-opacity-0">
-            <div id="hero-space"></div>
-            <div class="content-space">
+        <div class="cover z-10 absolute top-0 left-0 bottom-0 w-full bg-black bg-opacity-40">
+            <!-- <div id="hero-space"></div> -->
+            <div class="content-center grid justify-center h-full relative">
+                <h1 class="shadowed text-6xl text-white uppercase font-bold text-center h-fit">Kaizen Safaris' Gallery</h1>
 
             </div>
         </div>
     </div>
 </section>
 
-<main>
-    <h1 class=" text-primary-900 text-6xl my-8 text-center">Kaizen Safari's Gallery</h1>
-    <div class="container">
-        <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-8 pb-8">
+<main class="my-8">
+    <div class="container grid">
+        <h2 class="head-1 text-primary-800">Photos</h2>
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-8 pb-8" id="photo-box">
             
             {% for photo in photos %}
-                <figure class=" aspect-1610 overflow-hidden">
-                    <a href="{{ photo.image.url }}" data-lightbox="gallery">
+                <figure class="photo aspect-1610 overflow-hidden hidden clipped">
+                    <a href="{{ photo.image.url }}" data-lightbox="gallery" data-title="{{ photo.description }}">
                         <img src="{{ photo.image.url }}" alt="{{ photo.description }}" class=" sm:scale-125 sm:hover:scale-100x sm:grayscale sm:hover:grayscale-0 transition-all object-cover">
                     </a>
                 </figure>
             {% endfor %}
                 
         </div>
+        <a class="link more-link ml-auto cursor-pointer" data-class="photo" data-number="4">more..</a>
+    </div>
+    <div class="container mt-16 grid">
+        <h2 class="head-1 text-primary-800">Videos</h2>
+        <div class="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-8" id="photo-box">
+            
+            {% for video in videos %}
+            <iframe class="aspect-video w-full ytVideo hidden clipped" allowfullscreen
+            src="{{ video.link }}">
+            </iframe>
+            {% endfor %}
+                
+        </div>
+        <a class="link more-link ml-auto cursor-pointer" data-class="ytVideo" data-number="3">more..</a>
     </div>
 </main>
 {% endblock content %}
+
     

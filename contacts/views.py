@@ -1,19 +1,14 @@
 from django.conf import settings
 from django.core.mail import send_mail
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from django.views.generic import TemplateView, FormView
 
-from contacts.forms import BookingForm, ContactForm
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+from contacts.forms import BookingForm, CarHireForm, TentHireForm
 from contacts.models import Receipient
 
-
-# Create your views here.
-# class ContactPage(FormView):
-#    form_class = ContactForm
-#    success_url = '/contact/success/'
-#    template_name = "contacts/contactpage.html"
 
 class BookingView(FormView):
    form_class = BookingForm
@@ -36,6 +31,52 @@ class BookingView(FormView):
    def form_invalid(self, form):
       # form.send_mail()
       return super(BookingView, self).form_invalid(form)
+   
+
+class TentHireView(FormView):
+   form_class = TentHireForm
+   success_url = '/contact/booking/success'
+   template_name = 'contacts/tent-hire.html'
+
+   def post(self, request, *args, **kwargs):
+      form_class = self.get_form_class()
+      form = self.get_form(form_class)
+
+      if form.is_valid():
+         return self.form_valid(form)
+      print('here2')
+      return self.form_invalid(form)
+
+   def form_valid(self, form):
+      form.send_mail()
+      return super(TentHireView, self).form_valid(form)
+
+   def form_invalid(self, form):
+      # form.send_mail()
+      return super(TentHireView, self).form_invalid(form)
+   
+
+class CarHireView(FormView):
+   form_class = CarHireForm
+   success_url = '/contact/booking/success'
+   template_name = 'contacts/car-hire.html'
+
+   def post(self, request, *args, **kwargs):
+      form_class = self.get_form_class()
+      form = self.get_form(form_class)
+
+      if form.is_valid():
+         return self.form_valid(form)
+      print('here2')
+      return self.form_invalid(form)
+
+   def form_valid(self, form):
+      form.send_mail()
+      return super(CarHireView, self).form_valid(form)
+
+   def form_invalid(self, form):
+      # form.send_mail()
+      return super(CarHireView, self).form_invalid(form)
 
 
 @api_view(['POST'])

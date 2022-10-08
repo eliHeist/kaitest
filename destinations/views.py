@@ -6,8 +6,10 @@ from destinations.models import Destination, Itinerary
 def destinationDetailView(request, pk):
     template_name = 'destinations/destination-detail.html'
     destination = Destination.objects.get(id=pk)
+    itineraries = Itinerary.objects.filter(destination=destination)
     context = {
-        "destination": destination
+        "destination": destination,
+        "itineraries": itineraries
     }
     return render(request, template_name, context)
 

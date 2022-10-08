@@ -1,15 +1,15 @@
 {% load static %}
 
-<footer class=" bg-primary-900 py-16 px-2 rounded-[3rem] mb-6 shadow-2xl">
+<footer class="border-top bg-primary-900 py-4 px-2">
     <div class="container text-white">
         <h2 class="hidden">Footer</h2>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 text-xl">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4">
             <figure class="hidden sm:block">
                 <img src="{% static 'img/logo-white.png' %}" alt="">
             </figure>
             <div>
                 <h3 class=" text-3xl font-medium mb-4">Locate Us</h3>
-                <ol class="list-none grid gap-3">
+                <ol class="list-none grid gap-2">
                     <li><i class="fas fa-building mr-4"></i>Mukasa Towers, Ground Floor</li>
                     <li><i class="fas fa-road mr-4"></i>Seeta – Namilyango Road</li>
                     <li><i class="fas fa-box mr-4"></i>P O Box 8437, Mukono, Uganda</li>
@@ -20,19 +20,18 @@
             </div>
             <aside class="mt-8 lg:mt-0">
                 <h3 class="text-3xl font-medium mb-4">Popular Links</h3>
-                <ol class="list-none grid gap-3">
-                    <li><a href="">Ministry of Tourism</a></li>
-                    <li><a href="">Wildlife and Antiquities</a></li>
-                    <li><a href="">Uganda Wildlife Authority</a></li>
-                    <li><a href="">Gorilla Permits and Licenses</a></li>
-                    <li><a href="">Travel e-Visa</a></li>
-                    <li><a href="">Uganda Tourism Board</a></li>
-                    <li><a href="">Investiture into the woods</a></li>
+                <ol class="list-none grid gap-2">
+                    <li>~<a href="">Ministry of Tourism</a></li>
+                    <li>~<a href="">Wildlife and Antiquities</a></li>
+                    <li>~<a href="">Uganda Wildlife Authority</a></li>
+                    <li>~<a href="">Gorilla Permits and Licenses</a></li>
+                    <li>~<a href="">Travel e-Visa</a></li>
+                    <li>~<a href="">Uganda Tourism Board</a></li>
                 </ol>
             </aside>
             <div class="mt-8 lg:mt-0">
                 <h3 class="text-3xl font-medium mb-4">Get in Touch</h3>
-                <form class="grid gap-4" x-data="{
+                <form class="grid gap-3" x-data="{
                     status: '',
                     mail: {
                         name: '',
@@ -65,21 +64,21 @@
                 }" @submit.prevent="sendMail()">
                     <div id="token">{% csrf_token %}</div>
                     <input x-model="mail.name" type="text" placeholder="Your Name" name="your_name"
-                        class=" p-2 w-full rounded-xl text-black">
+                        class=" p-1 w-full rounded-lg text-base text-black">
                     <input x-model="mail.email" type="email" placeholder="Your email" name="your_email"
-                        class=" p-2 w-full rounded-xl text-black">
+                        class=" p-1 w-full rounded-lg text-base text-black">
                     <textarea x-model="mail.message" name="your_message" cols="30" rows="4" placeholder="Your Message"
-                        class=" p-2 w-full rounded-xl text-black"></textarea>
+                        class=" p-1 w-full rounded-lg text-base text-black"></textarea>
                     <button type="submit"
-                        class="bg-white w-fit text-primary-900 font-semibold p-2 px-3 rounded-md mx-auto sm:ml-0"
+                        class="bg-white w-fit text-primary-900 font-semibold mx-auto sm:ml-0 btn"
                         >Submit</button> <span class="" x-text="status"></span>
                 </form>
             </div>
         </div>
-        <p class="text-center mt-8 text-lg">
+        <p class="text-center mt-8">
             © Copyright 2022 - Kaizen Safaris - All Rights Reserved.
         </p>
-        <ul class=" list-none flex gap-4 justify-center text-2xl">
+        <ul class=" list-none flex gap-4 justify-center text-4xl">
             <li><a href="https://www.facebook.com/kaizensafaris" class=""><i class="fab fa-facebook"></i></a></li>
             <li><a href="https://twitter.com/KaizenSafaris" class=""><i class="fab fa-twitter"></i></a></li>
             <li><a href="" class=""><i class="fab fa-instagram"></i></a></li>

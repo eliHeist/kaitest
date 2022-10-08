@@ -45,6 +45,17 @@ TIME_CHOICES = [
     ('5PM - 10PM', '5PM - 10PM'),
 ]
 
+SLEEPER_CHOICES = [
+    ('1-2 Sleeper', '1-2 Sleeper'),
+    ('3-4 Sleeper', '3-4 Sleeper'),
+]
+
+CAR_CHOICES = [
+    ('7-8 seater', '7-8 seater'),
+    ('4 seater', '4 seater'),
+    ('6 seater', '6 seater'),
+]
+
 class BookingForm(forms.Form):
     first_name = forms.CharField(label='First Name', required=True)
     last_name = forms.CharField(label='Last Name', required=True)
@@ -55,7 +66,7 @@ class BookingForm(forms.Form):
     group_no = forms.IntegerField(label='If a group, How many People are in the group?', required=False)
     tour = forms.CharField(label='Which Tour or Visit are you intrested in?', required=False)
     contact_choice = forms.ChoiceField(label="What's the best way to contact you?", choices=CONTACT_CHOICES, widget=forms.RadioSelect, required=False)
-    time_choice = forms.ChoiceField(label='If phone what is the best time to call you?', choices=TIME_CHOICES, widget=forms.RadioSelect, required=False)
+    time_choice = forms.ChoiceField(label='If phone what is the best time to call you? (EAT)', choices=TIME_CHOICES, widget=forms.RadioSelect, required=False)
     more_info = forms.CharField(label='Anything Else we should know', widget=forms.Textarea, required=False)
 
     def send_mail(self):
@@ -80,7 +91,62 @@ class BookingForm(forms.Form):
             return HttpResponse('Invalid header found.')
 
 
+class TentHireForm(forms.Form):
+    first_name = forms.CharField(label='First Name', required=True)
+    last_name = forms.CharField(label='Last Name', required=True)
+    email = forms.EmailField(label='Email', required=True)
+    phone = forms.CharField(label='Phone Number', max_length=15, required=True)
+    sleepers = forms.ChoiceField(label="Tent type", choices=SLEEPER_CHOICES, widget=forms.CheckboxSelectMultiple, required=False)
+    contact_choice = forms.ChoiceField(label="What's the best way to contact you?", choices=CONTACT_CHOICES, widget=forms.RadioSelect, required=False)
+    time_choice = forms.ChoiceField(label='If phone what is the best time to call you? (EAT)', choices=TIME_CHOICES, widget=forms.RadioSelect, required=False)
+    more_info = forms.CharField(label='Anything Else we should know', widget=forms.Textarea, required=False)
 
+    def send_mail(self):
+        first_name = self.cleaned_data.get('first_name')
+        last_name = self.cleaned_data.get('last_name')
+        email = self.cleaned_data.get('email')
+        phone = self.cleaned_data.get('phone')
+        tent = self.cleaned_data.get('sleepers')
+        contact_choice = self.cleaned_data.get('contact_choice')
+        time_choice = self.cleaned_data.get('time_choice')
+        more_info = self.cleaned_data.get('more_info')
+
+        try:
+            message = f'Name: {first_name} {last_name}\nEmail: {email}\nPhone: {phone}\nAction: hire {tent} tent\n\nPrefered contact method: {contact_choice}\nPrefered time of contact: {time_choice}\nMore information: {more_info}'
+            subject = 'Tent Hire'
+            send_mail(subject, message, settings.EMAIL_HOST_USER, [r.email for r in Receipient.objects.all()], fail_silently=False)
+            # print(message)
+        except BadHeaderError:
+            return HttpResponse('Invalid header found.')
+
+
+class CarHireForm(forms.Form):
+    first_name = forms.CharField(label='First Name', required=True)
+    last_name = forms.CharField(label='Last Name', required=True)
+    email = forms.EmailField(label='Email', required=True)
+    phone = forms.CharField(label='Phone Number', max_length=15, required=True)
+    vehicle = forms.ChoiceField(label="Number of seats of vehicle", choices=CAR_CHOICES, widget=forms.CheckboxSelectMultiple, required=False)
+    contact_choice = forms.ChoiceField(label="What's the best way to contact you?", choices=CONTACT_CHOICES, widget=forms.RadioSelect, required=False)
+    time_choice = forms.ChoiceField(label='If phone what is the best time to call you? (EAT)', choices=TIME_CHOICES, widget=forms.RadioSelect, required=False)
+    more_info = forms.CharField(label='Anything Else we should know', widget=forms.Textarea, required=False)
+
+    def send_mail(self):
+        first_name = self.cleaned_data.get('first_name')
+        last_name = self.cleaned_data.get('last_name')
+        email = self.cleaned_data.get('email')
+        phone = self.cleaned_data.get('phone')
+        vehicle = self.cleaned_data.get('vehicle')
+        contact_choice = self.cleaned_data.get('contact_choice')
+        time_choice = self.cleaned_data.get('time_choice')
+        more_info = self.cleaned_data.get('more_info')
+
+        try:
+            message = f'Name: {first_name} {last_name}\nEmail: {email}\nPhone: {phone}\nAction: hire {vehicle} vehicle\n\nPrefered contact method: {contact_choice}\nPrefered time of contact: {time_choice}\nMore information: {more_info}'
+            subject = 'Car Hire'
+            send_mail(subject, message, settings.EMAIL_HOST_USER, [r.email for r in Receipient.objects.all()], fail_silently=False)
+            # print(message)
+        except BadHeaderError:
+            return HttpResponse('Invalid header found.')
 
 # class ContactForm(forms.Form):
 #     your_name = forms.CharField(required=False)

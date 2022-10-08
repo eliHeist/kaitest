@@ -1,10 +1,9 @@
 from django.contrib import admin
 
-from destinations.models import Cartegory, Day, Destination, Itinerary
+from destinations.models import Day, Destination, Itinerary
 
 # Register your models here.
 admin.site.register(Destination)
-admin.site.register(Cartegory)
 
 class InlineDay(admin.StackedInline):
     model = Day

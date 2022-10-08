@@ -1,3 +1,4 @@
+from email.policy import default
 from pyexpat import model
 from django.db import models
 
@@ -15,7 +16,9 @@ class Itinerary(models.Model):
     name = models.CharField(max_length=100)
     image = models.ImageField(null=True)
     destination = models.ForeignKey(Destination, on_delete=models.CASCADE, related_name='itineraries')
-    cartegories = models.ManyToManyField('Cartegory', related_name='itineraries')
+    departure_date = models.DateField(blank=True, null=True)
+    return_date = models.DateField(blank=True, null=True)
+    is_upcoming = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'Itinerary'
@@ -23,6 +26,9 @@ class Itinerary(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def Duration(self):
+        return str(self.return_date - self.departure_date)[:-9]
 
 
 class Day(models.Model):
@@ -42,16 +48,3 @@ class Day(models.Model):
 
     def __str__(self):
         return self.title
-
-class Cartegory(models.Model):
-    name = models.CharField(max_length=50)
-
-    class Meta:
-        verbose_name = 'Cartegory'
-        verbose_name_plural = 'Cartegories'
-
-    def __str__(self):
-        return self.name
-
-
-

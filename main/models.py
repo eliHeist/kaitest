@@ -1,6 +1,5 @@
 from django.db import models
 
-from destinations.models import Cartegory, Itinerary
 
 # Create your models here.
 class EquipmentType(models.Model):
@@ -42,24 +41,21 @@ class Photo(models.Model):
         return 'Photo'
 
 
-class FeaturedTour(models.Model):
-    itinerary = models.ForeignKey(Itinerary, on_delete=models.CASCADE, related_name='featured_itineraries')
+class YTVideo(models.Model):
+    link = models.URLField()
 
     class Meta:
-        verbose_name = 'Featured Tour'
-        verbose_name_plural = 'Featured Tours'
+        verbose_name = 'YouTube Video'
+        verbose_name_plural = 'YouTube Videos'
+    
+    def __str__(self):
+        return self.link
+
+
+class Review(models.Model):
+    reviewer = models.CharField(max_length=200)
+    text = models.TextField()
 
     def __str__(self):
-        return self.itinerary.name
-
-
-class FeaturedCartegory(models.Model):
-    cartegory = models.ForeignKey(Cartegory, on_delete=models.CASCADE, related_name='featured_itineraries')
-
-    class Meta:
-        verbose_name = 'Featured Cartegory'
-        verbose_name_plural = 'Featured Cartegories'
-
-    def __str__(self):
-        return self.cartegory.name
+        return self.reviewer
 

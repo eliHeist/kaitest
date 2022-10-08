@@ -22,15 +22,15 @@
     
     <title>Kaizen Safaris</title>
 </head>
-<body class=" scroll-smooth">
+<body class="overflow-x-hidden">
     {% include 'components/header.html' %}
     {% block content %}
     {% endblock content %}
     {% include 'components/footer.html' %}
-
+    
+    <script src="{% static 'js/main.js' %}"></script>
     {% block scripts %}
     {% endblock scripts %}
-    <script src="{% static 'js/main.js' %}"></script>
     
 </body>
 </html>

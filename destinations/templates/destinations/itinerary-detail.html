@@ -11,13 +11,13 @@
         </div>
     </section> -->
 
-    <section class="overflow-hidden h-[80vh]">
+    <section id="banner" class="overflow-hidden h-[80vh]">
         <div class="relative h-full">
                 <img src="{{ itinerary.image.url }}" alt="Kaizen Safaris {{ itinerary.name }}" class=" w-full h-full object-cover">
             <div class="cover z-10 absolute top-0 left-0 w-full h-full bg-black bg-opacity-40">
                 <div id="hero-space"></div>
-                <div class="content-space grid justify-center content-start h-full">
-                    <h1 class="shadowed text-5xl text-white uppercase mt-20 sm:mt-40 font-bold">{{ itinerary.name }}</h1>
+                <div class="container content-space grid justify-center content-start h-full">
+                    <h1 class="shadowed text-5xl text-white uppercase mt-20 sm:mt-40 font-bold text-center">{{ itinerary.name }}</h1>
                     <p class="shadowed mt-8 text-xl mb-16 mx-auto text-white">Highlights Of Your Journey</p>
                 </div>
             </div>
@@ -153,9 +153,7 @@
             }
         }
 
-        .shadowed{
-            text-shadow: 2px 2px 5px black;
-        }
+        
 
         .card:hover .circle{
             background-color: rgb(132 204 22 / var(--tw-bg-opacity));

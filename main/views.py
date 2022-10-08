@@ -1,16 +1,22 @@
 from django.shortcuts import render
+from django.views.generic import TemplateView
 
-from destinations.models import Day, Destination
-from main.models import Equipment, EquipmentType, Photo
+from destinations.models import Destination, Itinerary
+from main.models import EquipmentType, Photo, Review, YTVideo
 
 # Create your views here.
-def homeView(request):
-    template_name = 'main/home.html'
-    destinations = Destination.objects.all()
-    context = {
-        "destinations": destinations
-    }
-    return render(request, template_name, context)
+
+class HomeView(TemplateView):
+    template_name = "main/home.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['destinations'] = Destination.objects.all()
+        context['upcoming_tours'] = Itinerary.objects.filter(is_upcoming=True)
+        context['tours'] = Itinerary.objects.all()
+        context['reviews'] = Review.objects.all()
+        return context
+    
 
 def bookingView(request):
     template_name = 'main/booking.html'
@@ -28,8 +34,10 @@ def equipmentView(request):
 def galleryView(request):
     template_name = 'main/gallery.html'
     photos = Photo.objects.all()
+    videos = YTVideo.objects.all()
     context = {
-        "photos": photos
+        "photos": photos,
+        "videos": videos,
     }
     return render(request, template_name, context)
 

@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from main.models import Equipment, EquipmentType, FeaturedCartegory, FeaturedTour, Photo
+from main.models import Equipment, EquipmentType, Photo, Review, YTVideo
 
 # Register your models here.
 # admin.site.register(Equipment)
-# admin.site.register(EquipmentType)
+admin.site.register(Review)
 
 class InlineEquipment(admin.StackedInline):
     model = Equipment
@@ -19,5 +19,4 @@ class ItineraryAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Photo)
-admin.site.register(FeaturedTour)
-admin.site.register(FeaturedCartegory)
+admin.site.register(YTVideo)
