@@ -40,23 +40,23 @@ const options = {
     threshold: 0,
 }
 
-const Observer = new IntersectionObserver(function(entries, observer){
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            nav.classList.toggle('bg-white')
-            links.forEach(link => {
-                link.classList.toggle('text-f')
-            });
-        } else {
-            nav.classList.toggle('bg-white')
-            links.forEach(link => {
-                link.classList.toggle('text-f')
-            });
-        }
-    });
-}, options)
+// const Observer = new IntersectionObserver(function(entries, observer){
+//     entries.forEach(entry => {
+//         if (entry.isIntersecting) {
+//             nav.classList.toggle('bg-white')
+//             links.forEach(link => {
+//                 link.classList.toggle('text-f')
+//             });
+//         } else {
+//             nav.classList.toggle('bg-white')
+//             links.forEach(link => {
+//                 link.classList.toggle('text-f')
+//             });
+//         }
+//     });
+// }, options)
 
-Observer.observe(banner)
+// Observer.observe(banner)
 //#endregion
 
 //#region gallery
@@ -68,7 +68,7 @@ linkBtns.forEach(link => {
     })
 });
 
-function ShowMore(className, number, el) {
+function ShowMore(className, number, el=null) {
     var items = document.querySelectorAll(`.${className}.hidden`)
     let num = number
     if (num > items.length) {
@@ -85,9 +85,10 @@ function ShowMore(className, number, el) {
         i++
     });
     
-    if (items.length == 0) {
+    if (items.length == 0 && el) {
         el.classList.add('hidden')
     }
+    console.log(9);
 }
 //#endregion
 
@@ -95,15 +96,26 @@ function ShowMore(className, number, el) {
 const btn = document.getElementById('next-section-btn')
 const nextSection = document.getElementById('next-section')
 
-btn.addEventListener('click', () => {
-    if (!nextSection.classList.contains('show')) {
-        nextSection.parentElement.classList.remove('hidden')
-        setTimeout(() => {
-            nextSection.classList.add('show')
-        }, 300)
-    }
-    nextSection.parentElement.scrollIntoView({
-        behavior: 'smooth'
+if (btn) {
+    btn.addEventListener('click', () => {
+        if (!nextSection.classList.contains('show')) {
+            nextSection.parentElement.classList.remove('hidden')
+            setTimeout(() => {
+                nextSection.classList.add('show')
+            }, 300)
+        }
+        nextSection.parentElement.scrollIntoView({
+            behavior: 'smooth'
+        })
     })
+}
+//#endregion
+
+//#region car
+const car = document.querySelector("img.car")
+var previousPosn = 0
+window.addEventListener('scroll', () => {
+    // window.
 })
 //#endregion
+

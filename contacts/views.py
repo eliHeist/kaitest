@@ -41,17 +41,16 @@ class TentHireView(FormView):
    def post(self, request, *args, **kwargs):
       form_class = self.get_form_class()
       form = self.get_form(form_class)
+      print(form)
 
-      if form.is_valid():
-         return self.form_valid(form)
-      print('here2')
-      return self.form_invalid(form)
+      return self.form_valid(form) if form.is_valid() else self.form_invalid(form)
 
    def form_valid(self, form):
       form.send_mail()
       return super(TentHireView, self).form_valid(form)
 
    def form_invalid(self, form):
+      print('here2')
       # form.send_mail()
       return super(TentHireView, self).form_invalid(form)
    
@@ -64,6 +63,8 @@ class CarHireView(FormView):
    def post(self, request, *args, **kwargs):
       form_class = self.get_form_class()
       form = self.get_form(form_class)
+
+      print(form)
 
       if form.is_valid():
          return self.form_valid(form)
@@ -84,7 +85,7 @@ def sendMail(request):
    if request.method == 'POST':
       data = request.data
       print(data)
-      message = f"Name: {data.get('your_name')}\nEmail: {data.get('your_email')}\nMore info: {data.get('your_message')}"
+      message = f"Name: {data.get('name')}\nEmail: {data.get('email')}\nMessage: {data.get('message')}"
       print("\n\nmessage\n"+message)
       receipients = Receipient.objects.all()
 
@@ -103,42 +104,42 @@ def sendMail(request):
 
 
 # @api_view(['POST'])
-def bookNow(request):
-   message = 'Successfully sent your booking'
-   context = {
-      'message': message
-   }
-   template_name = 'contacts/status.html'
+# def bookNow(request):
+#    message = 'Successfully sent your booking'
+#    context = {
+#       'message': message
+#    }
+#    template_name = 'contacts/status.html'
    
-   if request.method == 'POST':
-      data = request.data
-      print(data)
-      message = f'''Name: {data.get('fname')} {data.get('lname')}
-      \nEmail: {data.get('email')} \t Phone number: {data.get('phone')}
-      \nWhen are you planning to visit: {data.get('date')}
-      \nHow many are you?: {data.get('single_number')}
-      \nIf a group, How many People are in the group?: {data.get('group_number')}
-      \nWhich Tour or Visit are you intrested in?: {data.get('tour')}
-      \nWhat's the best way to contact you?: {data.get('fav-means')}
-      \nIf phone what is the best time to call you?: {data.get('fav-time')}
-      \nAnything Else we should know: {data.get('anything_else')}
-      '''
-      print("\n\nmessage\n"+message)
-      receipients = Receipient.objects.all()
+#    if request.method == 'POST':
+#       data = request.data
+#       print(data)
+#       message = f'''Name: {data.get('fname')} {data.get('lname')}
+#       \nEmail: {data.get('email')} \t Phone number: {data.get('phone')}
+#       \nWhen are you planning to visit: {data.get('date')}
+#       \nHow many are you?: {data.get('single_number')}
+#       \nIf a group, How many People are in the group?: {data.get('group_number')}
+#       \nWhich Tour or Visit are you intrested in?: {data.get('tour')}
+#       \nWhat's the best way to contact you?: {data.get('fav-means')}
+#       \nIf phone what is the best time to call you?: {data.get('fav-time')}
+#       \nAnything Else we should know: {data.get('anything_else')}
+#       '''
+#       print("\n\nmessage\n"+message)
+#       receipients = Receipient.objects.all()
 
-      try:
-         send_mail(
-            subject='Booking',
-            message=message,
-            from_email=settings.EMAIL_HOST_USER,
-            recipient_list=[receipient.email for receipient in receipients]
-         )
+#       try:
+#          send_mail(
+#             subject='Booking',
+#             message=message,
+#             from_email=settings.EMAIL_HOST_USER,
+#             recipient_list=[receipient.email for receipient in receipients]
+#          )
 
-      except Exception as e:
-         print(f'Exception: {e}')
-         message = "Failed, try again later"
+#       except Exception as e:
+#          print(f'Exception: {e}')
+#          message = "Failed, try again later"
 
-   return render(request, template_name, context)
+#    return render(request, template_name, context)
 
 
 class SuccessView(TemplateView):

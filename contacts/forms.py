@@ -96,12 +96,13 @@ class TentHireForm(forms.Form):
     last_name = forms.CharField(label='Last Name', required=True)
     email = forms.EmailField(label='Email', required=True)
     phone = forms.CharField(label='Phone Number', max_length=15, required=True)
-    sleepers = forms.ChoiceField(label="Tent type", choices=SLEEPER_CHOICES, widget=forms.CheckboxSelectMultiple, required=False)
+    sleepers = forms.ChoiceField(label="Tent type", choices=SLEEPER_CHOICES, widget=forms.RadioSelect, required=False)
     contact_choice = forms.ChoiceField(label="What's the best way to contact you?", choices=CONTACT_CHOICES, widget=forms.RadioSelect, required=False)
     time_choice = forms.ChoiceField(label='If phone what is the best time to call you? (EAT)', choices=TIME_CHOICES, widget=forms.RadioSelect, required=False)
     more_info = forms.CharField(label='Anything Else we should know', widget=forms.Textarea, required=False)
 
     def send_mail(self):
+        print('sending')
         first_name = self.cleaned_data.get('first_name')
         last_name = self.cleaned_data.get('last_name')
         email = self.cleaned_data.get('email')
@@ -125,7 +126,7 @@ class CarHireForm(forms.Form):
     last_name = forms.CharField(label='Last Name', required=True)
     email = forms.EmailField(label='Email', required=True)
     phone = forms.CharField(label='Phone Number', max_length=15, required=True)
-    vehicle = forms.ChoiceField(label="Number of seats of vehicle", choices=CAR_CHOICES, widget=forms.CheckboxSelectMultiple, required=False)
+    vehicle = forms.ChoiceField(label="Number of seats of vehicle", choices=CAR_CHOICES, widget=forms.RadioSelect, required=False)
     contact_choice = forms.ChoiceField(label="What's the best way to contact you?", choices=CONTACT_CHOICES, widget=forms.RadioSelect, required=False)
     time_choice = forms.ChoiceField(label='If phone what is the best time to call you? (EAT)', choices=TIME_CHOICES, widget=forms.RadioSelect, required=False)
     more_info = forms.CharField(label='Anything Else we should know', widget=forms.Textarea, required=False)

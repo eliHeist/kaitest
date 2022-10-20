@@ -19,13 +19,13 @@
     </div>
 </section>
 <!-- welcome section -->
-<section id="next" class=" bg-[#efd8ae] py-16 border-all shadow-2xl">
+<section id="next" class=" bg-[#efd8ae] py-8 border-all shadow-2xl">
     <div class="container">
         <div class="grid md:grid-cols-2 lg:grid-cols-2">
             <figure>
                 <img src="{% static 'img/lion.png' %}" alt="East Africa Tours" class="sm:max-h-96">
             </figure>
-            <article class="grid">
+            <article class="grid obs fade-in">
                 <p class="text-xl p-4 my-auto text-center">
                     Kaizen Safaris welcomes you to Africa, the magnificent continent with inexhaustible natural,
                     cultural and adventurous treasures. We have been dedicated to providing best services to our valued
@@ -41,19 +41,19 @@
 </section>
 
 <!-- upcoming tours -->
-<section class=" pt-16 bg-primary-900">
+<section class="mt-16 py-16 bg-primary-900">
     <h2 class="head-1 text-white">Upcoming Tours</h2>
     <div class="container">
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             
             {% for safari in upcoming_tours %}
-                <div class="overflow-hidden relative card">
+                <div class="obs fade-in slide-in top overflow-hidden relative card hover:shadow-2xl shadow-white">
                     <img src="{{ safari.image.url }}" alt=""
                         class="w-full h-full aspect-square object-cover">
                     <div class="absolute top-0 left-0 w-full h-full grid">
                         <div class="mt-auto filter p-2 backdrop-blur-md bg-gradient-to-t from-[rgba(0,0,0,0.4)]">
                             <a href="{% url 'destinations:itinerary-detail' safari.pk %}">
-                                <h2 class="text-white text-xl font-extrabold">{{ safari.name }}</h2>
+                                <h2 class="text-white text-3xl font-extrabold">{{ safari.name }}</h2>
                             </a>
                             <div class="grid grid-cols-2 gap-2 text-gray-300 font-semibold transition-all duration-1000 show overflow-hidden h-0">
                                 <span><i class="fa fa-calendar mr-2"></i>{{ safari.departure_date }}</span>
@@ -61,12 +61,17 @@
                             </div>
                         </div>
                     </div>
+                    <div class="flyer px-4 h-12 absolute top-6 right-6 bg-lime-500">
+                        <h3 class="mx-auto h-full grid place-content-center text-center text-white text-xl font-bold font-sans">
+                            UGX 200,000
+                        </h3>
+                    </div>
                 </div>
             {% endfor %}
                 
         </div>
     </div>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="white" fill-opacity="1" d="M0,96L80,117.3C160,139,320,181,480,197.3C640,213,800,203,960,208C1120,213,1280,235,1360,245.3L1440,256L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>
+    
 </section>
 
 <!-- Featured safaris -->
@@ -114,7 +119,7 @@
     <div class="py-16 bg-black bg-opacity-60 grid">
         <div class="container text-white text-center py-16">
             <h2 class="head-1">Didn’t find the trip you’re looking for?</h2>
-            <p class=" max-w-xl text-xl mx-auto my-4 p-4">
+            <p class=" max-w-6xl text-xl mx-auto my-4 p-4">
                 Tailor-made trips offer you the flexibility to design your own trip exactly how you like it. You can
                 decide how and when to travel, the level of service and the hotel standard. Pack in as many activities
                 and locations as possible, or incorporate some relaxation and free time to explore on your own terms.
@@ -135,17 +140,17 @@
                 
                 {% for review in reviews %}
                     <div class="scroll-element swiper-slide h-full">
-                        <div class="p-10 bg-primary-800 h-full rounded-lg">
-                            <h3 class="text-xl font-semibold text-white mb-4">{{ review.reviewer }}</h3>
-                            <p class="text-primary-100 text-lg">{{ review.text }}</p>
+                        <div class="p-4 bg-white h-full rounded-lg">
+                            <h3 class="text-xl font-semibold text-black mb-4">{{ review.reviewer }}</h3>
+                            <p class="text-primary-800 text-lg">{{ review.text }}</p>
                         </div>
                     </div>
                 {% endfor %}
                     
             </div>
             <div class="swiper2-pagination mx-auto"></div>
-            <!-- <div class="swiper2-button-next"></div>
-            <div class="swiper2-button-prev"></div> -->
+            <div class="swiper2-button-next"></div>
+            <div class="swiper2-button-prev"></div>
         </div>
     </div>
 </section>
@@ -247,11 +252,11 @@
                 slidesPerView: 3,
             },
             1366: {
-                slidesPerView: 4,
+                slidesPerView: 3,
             },
         },
       });
-    var swiper2 = new Swiper(".swiper2", {
+    var feedbackSwiper = new Swiper(".swiper2", {
         spaceBetween: 25,
         loop: true,
         centerSlide: 'false',
@@ -282,7 +287,7 @@
                 slidesPerView: 2,
             },
             1366: {
-                slidesPerView: 3,
+                slidesPerView: 2,
             },
         },
       });

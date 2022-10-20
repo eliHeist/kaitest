@@ -59,3 +59,7 @@ class Review(models.Model):
     def __str__(self):
         return self.reviewer
 
+
+# class ReviewLink(models.Model):
+#     link = models.URLField()
+#     review = models.ForeignKey()

@@ -10,17 +10,26 @@
     <meta name="description" content="Free Web tutorials">
     <meta name="keywords" content="Tour, Travel, Uganda, Kenya, East Africa, Tanzania, Rwanda, Burundi, Congo, Safari, Camping">
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'fontawesome-free-6.1.1-web/css/all.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'fontawesome-free-6.1.1-web/css/all.min.css' %}">
     <!-- <link rel="stylesheet" href="{% static 'lib/axios.min.js' %}"> -->
 
-    <script defer src="{% static 'lib/alpine.js' %}"></script>
+    <script type="text/js" defer src="{% static 'lib/alpine.js' %}"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+    </style>
     
     <!-- component styles -->
     {% block styles %}
     {% endblock styles %}
     
     <title>Kaizen Safaris</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/obs.min.css' %}">
+    <style>
+        *{
+            font-family: 'Comic Neue', cursive;
+        }
+    </style>
 </head>
 <body class="overflow-x-hidden">
     {% include 'components/header.html' %}
@@ -28,7 +37,8 @@
     {% endblock content %}
     {% include 'components/footer.html' %}
     
-    <script src="{% static 'js/main.js' %}"></script>
+    <script type="text/js" src="{% static 'js/obs.js' %}"></script>
+    <script type="text/js" src="{% static 'js/main.js' %}"></script>
     {% block scripts %}
     {% endblock scripts %}
     
